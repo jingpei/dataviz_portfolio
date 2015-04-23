@@ -20,13 +20,7 @@ graphApp.controller("registration",
 	} // end function
 
 	$scope.register = function() {
-		Authentication.register($scope.user)
-		.then(function(user) {
-			Authentication.login($scope.user);
-			$location.path("/graph");
-		}).catch(function(error){
-			$scope.message = error.message;
-		});
+		$location.path("/graph");
 	} // register
 
 });  

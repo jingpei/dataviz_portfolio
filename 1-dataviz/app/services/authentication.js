@@ -14,26 +14,18 @@ graphApp.factory('Authentication',
 					email: user.email,
 					password: user.password
 				}); // authwithpassword
-			}, // login
-			register: function(user) {
-				return auth.$createUser({
-					email: user.email,
-					password: user.password
-				}).then(function(authData){
-					var ref = new Firebase(FIREBASE_URL);
-					var postRef = ref.child('users').child(authData.uid);
-					postRef.set({
-						date: Firebase.ServerValue.TIMESTAMP,
-						firstname: user.firstname,
-						lastname: user.lastname,
-						email: user.email,
-						password: user.password
-					});
-				});
-		} // register
+			} // login
 		} // myObject
 
-
+// this will be registration
+		var myObject = {
+			login: function(user) {
+				return auth.$authWithPassword({
+					email: user.email,
+					password: user.password
+				}); // authwithpassword
+			} // login
+		} // myObject
 
 		return myObject;
 	}); //factory
