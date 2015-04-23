@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0">
+
+  <title>Drunken Pirate Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/angular.min.js"></script>
+</head>
+
+<body ng-controller="PortfolioListController">
+  <main class="wrap group">
+
+    <aside class="sidebar" ng-include="'includes/left-col.html'"></aside>
+
+    <div class="content">
+      <article class="portfolio-item group" ng-repeat="portfolio in portfolios | filter:searchFor">
+        <figure class="portfolio-image">
+          <img ng-src="{{ portfolio.imageurl }}" alt="{{ portfolio.title }}">
+        </figure>
+        <header class="portfolio-info">
+          <span class="title" ng-bind="portfolio.title"></span>
+          <span class="date" ng-bind="portfolio.date"></span>
+          <div class="description" ng-bind="portfolio.description"></div>
+        </header>
+      </article>
+
+      <article class="portfolio-item group" style="clear:both">
+        <header class="portfolio-info">
+          <span class="title">Add a Portfolio</span>
+          <form name="add_portfolio"  novalidate > <!-- ng-submit="addPortfolio()" -->
+            <p class="error" ng-show="message" >{{ message }}</p>
+            <input name="title" type="text" placeholder="title" ng-required="true" ng-model="adding_portfolio.title" />
+            <p class="error" ng-show="add_portfolio.title.$invalid && add_portfolio.title.$touched">Must enter a title.</p>
+            <input type="text" placeholder="yyyy-mm-dd" ng-required="true" ng-model="adding_portfolio.date" />
+            <p class="error" ng-show="add_portfolio.date.$invalid && add_portfolio.date.$touched">Must enter a date.</p>
+            <textarea name="description" placeholder="description" ng-required="true" ng-model="adding_portfolio.description"></textarea>
+            <p class="error" ng-show="add_portfolio.description.$invalid && add_portfolio.description.$touched">Must enter a description.</p>
+            <button class="btn btn-success" ng-disabled="add_portfolio.$invalid" type="button" ng-click="addPortfolio( adding_portfolio )">Add Portfolio</button>
+          </form>
+        </header>
+      </article>
+    </div>
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="app/app.js"></script>
+
+  <script type="text/javascript">
+
+  function PortfolioListController( $scope ){
+    $scope.portfolios = [
+    {name: 'vessel1309', title: 'Call of Booty', date: '2013-09-01', description: 'Arrrgh mateys! This be the finest vessel sailing these seas that yer eyes ever laid sight on. Arrrgh.', imageurl: 'images/drunkenPirate_thumb3.png' },
+
+    {name: 'innocents1404', title: 'The Sack of the Innocents', date: '2014-04-15', description: 'This be a detail of the sacking of the innocents where I played an important role as business analyst and in implementation.', imageurl: 'images/drunkenPirate_thumb2.png' },
+
+    {name: 'firstmate1210', title: 'Pipe and First Mate', date: '2012-10-01', description: 'After a hard day of lootin\' and shootin\' I like to relax with my best mates and tally up the days booty.', imageurl: 'images/drunkenPirate_thumb1.png' }
+    ];
+
+    $scope.addPortfolio = function( new_portfolio ) {
+      $scope.portfolios.push( new_portfolio );
+      $scope.add_portfolio = {};
+    };
+  };
+
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
