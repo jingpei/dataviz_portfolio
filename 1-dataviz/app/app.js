@@ -1,5 +1,5 @@
 var graphApp = angular.module("graphApp",["ngRoute","appControllers","firebase"])
-.constant('FIREBASE_URL', 'https://vizapp.firebaseio.com/data');
+.constant('FIREBASE_URL', 'https://jp-dataviz.firebaseio.com');
 
 var appControllers = angular.module("appControllers", []);
 

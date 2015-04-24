@@ -1,6 +1,6 @@
 graphApp.controller("graphControllers", function($scope, $firebaseArray, FIREBASE_URL ){
 
-  var ref = new Firebase(FIREBASE_URL);
+  var ref = new Firebase(FIREBASE_URL+'/data');
 
   $scope.graphData = $firebaseArray(ref);
 
