@@ -4,7 +4,10 @@
           <img ng-src="{{ portfolio.imageurl }}" alt="{{ portfolio.title }}">
         </figure>
         <header class="portfolio-info">
-          <span class="title" ng-bind="portfolio.title"></span>
+          <a href="index.html#/portfolio/{{ portfolio.name }}">
+            <span class="title" ng-bind="portfolio.title"></span>
+          </a>
+          
           <span class="date" ng-bind="portfolio.date"></span>
           <div class="description" ng-bind="portfolio.description"></div>
         </header>
